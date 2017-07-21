@@ -58,10 +58,8 @@ fabric.properties
 ### Intellij+iml Patch ###
 # Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
 
+.idea/
 *.iml
-modules.xml
-.idea/misc.xml
-.idea/vcs.xml
 *.ipr
 
 ### Java ###
@@ -168,3 +166,6 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 # End of https://www.gitignore.io/api/git,java,macos,linux,gradle,windows,intellij+iml
+
+/classes/
+/run/
