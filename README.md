@@ -1,7 +1,8 @@
-[![SGP Foundation Logo](https://content.blamesnow.co.uk/modpacks/CurseForge_1024_1024.png)](https://minecraft.curseforce.com/projects/jei-integration/)
+[![JEI Integration Logo](https://content.blamesnow.co.uk/mods/jeiintegration/1024_1024.png)](https://minecraft.curseforce.com/projects/jei-integration/)
 # JEI Integration - Minecraft Mod
 _Providing Integrations & Tooltips_
 
+[![Build Status](https://img.shields.io/travis/SnowShock35/JEIIntegration/master.svg?style=flat-square)](https://travis-ci.org/SnowShock35/JEIIntegration) [![license](https://img.shields.io/github/license/SnowShock35/JEIIntegration.svg?style=flat-square)](https://github.com/SnowShock35/JEIIntegration/blob/master/LICENSE) [![Minecraft CurseForge Minecraft Versions](http://cf.way2muchnoise.eu/versions/jei-integration.svg)](https://minecraft.curseforge.com/projects/jei-integration/)
 ## Description
 
 JEI Integrations is an addon for Just Enough Items (JEI) that was originally called NEI Integration and was maintained by Tonius. However, since his absence the mod has yet to have been updated to support later versions of Minecraft. So, here it is. The mod adds helpful, highly-configurable tooltips, additional JEI recipe handlers for mods that yet to have native support and a few other helpful tools.
@@ -49,7 +50,7 @@ If you report an issue please make sure to follow the guidelines listed on the r
 
 **_Please include this information when reporting issues (Please try out newer versions before reporting a bug. It may of already been fixed.)_**
 
-* JEI Integration 1.12-1.0.0.0
+* JEI Integration 1.12-1.1.0.3
 * Minecraft 1.12
 * Minecraft Forge 14.21.1.2420
 
