@@ -32,12 +32,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = JEIIntegration.MOD_ID, name = JEIIntegration.MOD_NAME, version = JEIIntegration.MOD_VERSION, dependencies = "required-after:forge@[14.21.1.2387,)", useMetadata = true, guiFactory = "com.snowshock35.jeiintegration.config.JEIIntegrationModGuiFactory")
+@Mod(modid = JEIIntegration.MOD_ID, name = JEIIntegration.MOD_NAME, version = JEIIntegration.MOD_VERSION, dependencies = "required-after:forge@[14.21.1.2387,)", useMetadata = true, updateJSON = JEIIntegration.UPDATE_URL, guiFactory = "com.snowshock35.jeiintegration.config.JEIIntegrationModGuiFactory")
 public class JEIIntegration {
 
     public static final String MOD_ID = "jeiintegration";
     public static final String MOD_NAME = "JEI Integration";
     public static final String MOD_VERSION = "@VERSION@";
+    public static final String UPDATE_URL = "https://content.blamesnow.co.uk/mods/jeiintegration/update.json";
 
     public static Config config;
     public static Logger logger;

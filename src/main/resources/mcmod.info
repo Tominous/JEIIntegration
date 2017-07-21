@@ -5,8 +5,8 @@
   "version": "${version}",
   "mcversion": "${mc_version}",
   "logoFile": "assets/jeiintegration/textures/logo.png",
-  "url": "https://minecraft.curseforge.com/mc-mods/jei-integration",
-  "updateJSON": "",
+  "url": "https://minecraft.curseforge.com/projects/jei-integration",
+  "updateJSON": "https://content.blamesnow.co.uk/mods/jeiintegration/update.json",
   "authorList": ["SnowShock35"],
   "credits": "A huge thank you to Tonius for originally creating this amazing mod. I hope it lives up to his standards in his absence."
 }]
