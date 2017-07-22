@@ -85,16 +85,6 @@ If you report an issue please make sure to follow the guidelines listed on the r
 
 ***
 
-## Important Information
-
-**_Please include this information when reporting issues (Please try out newer versions before reporting a bug. It may of already been fixed.)_**
-
-* JEI Integration 1.11.2-1.0.2.9
-* Minecraft 1.11.2
-* Minecraft Forge 13.20.1.2421
-
-***
-
 ## Useful Links
 
 _Make sure to follow our lead developer, SnowShock35, on social media for the latest updates and news about mods and other exciting projects._
