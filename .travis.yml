@@ -8,7 +8,6 @@ before_script: export CHANGELOG="$(git log $TRAVIS_COMMIT_RANGE --pretty=format:
 script: ./gradlew build
 after_success:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./gradlew curseforge; fi'
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then ./gradlew bintrayUpload; fi'
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -19,3 +18,7 @@ cache:
 
 notifications:
   email: false
+
+branches:
+  except:
+    - /^[0-9]/
