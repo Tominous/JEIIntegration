@@ -18,7 +18,3 @@ cache:
 
 notifications:
   email: false
-
-branches:
-  except:
-    - /^[0-9]/

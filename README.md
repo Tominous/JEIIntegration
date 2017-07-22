@@ -89,7 +89,7 @@ If you report an issue please make sure to follow the guidelines listed on the r
 
 **_Please include this information when reporting issues (Please try out newer versions before reporting a bug. It may of already been fixed.)_**
 
-* JEI Integration 1.11.2-1.0.1.7
+* JEI Integration 1.11.2-1.0.2.9
 * Minecraft 1.11.2
 * Minecraft Forge 13.20.1.2421
 
