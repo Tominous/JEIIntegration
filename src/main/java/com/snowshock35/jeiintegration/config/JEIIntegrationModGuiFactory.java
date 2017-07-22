@@ -38,18 +38,19 @@ public class JEIIntegrationModGuiFactory implements IModGuiFactory {
     }
 
     @Override
-    public boolean hasConfigGui() {
-        return true;
-    }
-
-    @Override
-    public GuiScreen createConfigGui(GuiScreen parentScreen) {
-        return new JEIIntegrationModConfigGui(parentScreen);
+    public Class<? extends GuiScreen> mainConfigGuiClass() {
+        return JEIIntegrationModConfigGui.class;
     }
 
     @Nullable
     @Override
     public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
         return null;
     }
 }
