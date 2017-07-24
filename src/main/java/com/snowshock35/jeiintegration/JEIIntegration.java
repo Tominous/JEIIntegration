@@ -39,7 +39,7 @@ import org.apache.logging.log4j.Logger;
         dependencies = "required-after:Forge@[12.18.3.2185,)",
         useMetadata = true,
         clientSideOnly = true,
-        acceptedMinecraftVersions = "[1.12,)",
+        acceptedMinecraftVersions = "[1.10,)",
         canBeDeactivated = true,
         guiFactory = "com.snowshock35.jeiintegration.config.JEIIntegrationModGuiFactory",
         updateJSON = JEIIntegration.UPDATE_URL
