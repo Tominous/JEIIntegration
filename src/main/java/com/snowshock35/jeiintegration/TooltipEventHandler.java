@@ -39,7 +39,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class TooltipHandler {
+public class TooltipEventHandler {
 
     private Config config = JEIIntegration.config;
 
