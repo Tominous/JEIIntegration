@@ -2,7 +2,7 @@
 # JEI Integration - Minecraft Mod
 _Providing Integrations & Tooltips_
 
-[![Build Status](https://img.shields.io/travis/SnowShock35/JEIIntegration/master.svg?style=flat-square)](https://travis-ci.org/SnowShock35/JEIIntegration) [![LICENSE](https://img.shields.io/github/license/SnowShock35/JEIIntegration.svg?style=flat-square)](https://github.com/SnowShock35/JEIIntegration/blob/master/LICENSE) [![Minecraft CurseForge Downloads (Total)](http://cf.way2muchnoise.eu/full_jei-integration_downloads.svg)](https://minecraft.curseforge.com/projects/jei-integration/) [![Minecraft CurseForge Minecraft Versions](http://cf.way2muchnoise.eu/versions/jei-integration.svg)](https://minecraft.curseforge.com/projects/jei-integration/)
+[![Build Status](https://img.shields.io/travis/SnowShock35/JEIIntegration/master.svg)](https://travis-ci.org/SnowShock35/JEIIntegration) [![LICENSE](https://img.shields.io/github/license/SnowShock35/JEIIntegration.svg)](https://github.com/SnowShock35/JEIIntegration/blob/master/LICENSE) [![Minecraft CurseForge Downloads (Total)](http://cf.way2muchnoise.eu/full_jei-integration_downloads.svg)](https://minecraft.curseforge.com/projects/jei-integration/) [![Minecraft CurseForge Minecraft Versions](http://cf.way2muchnoise.eu/versions/jei-integration.svg)](https://minecraft.curseforge.com/projects/jei-integration/)
 ## Description
 #### Introduction
 
