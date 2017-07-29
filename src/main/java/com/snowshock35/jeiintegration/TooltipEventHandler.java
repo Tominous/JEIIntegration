@@ -79,14 +79,16 @@ public class TooltipEventHandler {
             e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.maxStackSize") + " " + e.getItemStack().getMaxStackSize());
         }
 
-        if (Objects.equals(config.getOreDictEntriesTooltipMode(), "enabled")) {
-            genOreDictTooltip(e);
-        } else if (Objects.equals(config.getOreDictEntriesTooltipMode(), "onShift") && isShiftKeyDown()) {
-            genOreDictTooltip(e);
-        } else if (Objects.equals(config.getOreDictEntriesTooltipMode(), "onDebug") && isDebugMode()) {
-            genOreDictTooltip(e);
-        } else if (Objects.equals(config.getOreDictEntriesTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
-            genOreDictTooltip(e);
+        if (!e.getItemStack().isEmpty()) {
+            if (Objects.equals(config.getOreDictEntriesTooltipMode(), "enabled")) {
+                genOreDictTooltip(e);
+            } else if (Objects.equals(config.getOreDictEntriesTooltipMode(), "onShift") && isShiftKeyDown()) {
+                genOreDictTooltip(e);
+            } else if (Objects.equals(config.getOreDictEntriesTooltipMode(), "onDebug") && isDebugMode()) {
+                genOreDictTooltip(e);
+            } else if (Objects.equals(config.getOreDictEntriesTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
+                genOreDictTooltip(e);
+            }
         }
 
         if (Objects.equals(config.getUnlocalizedNameTooltipMode(), "enabled")) {
