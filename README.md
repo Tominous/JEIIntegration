@@ -13,8 +13,8 @@ JEI Integrations is an addon for Just Enough Items (JEI) that was originally cal
 JEI Integration is an ever growing mod adding various helpful tools for the user. However, here is a small list to highlight it's key features available to use...
 
 * Configurable Tooltips for debug and useful information
-* Additional JEI handlers for mods that have yet to add there own
-* Data dumping various information like biome, potion and dimension id's
+* ~~Additional JEI handlers for mods that have yet to add there own~~
+* ~~Data dumping various information like biome, potion and dimension id's~~
 
 #### Tooltips
 
@@ -22,11 +22,15 @@ Tooltips are one of the main features of JEI Integration. They provide useful in
 
 **Burn Time** adds a tooltip value to any burnable material in the game giving you the time it burns for in ticks (20 ticks = 1 second). This also tells you whether an item is burnable or not so it can be handy for knowing that too since there are a lot more items in modded minecraft.
 
+**Durability** adds a tooltip to any item with durability status (tools, weapons, armour, etc.) and provides you with the total durability and how much durability remains.
+
 ~~**Fluid Registry Information** adds a tooltip value to any fluid in the game giving you specific details about said fluid like it's temperature (in kelvin), viscosity, luminosity and density.~~
 
 **Internal Name** adds a tooltip to every item stack in the game telling you the item's registry name. This tooltips is already available using the `advancedItemTooltip` option however, you can configure this one more precisely to your preference.
 
 **Max Stack Size** is a fairly straight forward tooltip telling you the maximum stack size of the current item stack you're hovering over. Self explanatory, right?
+
+**Metadata** is a more advanced tooltip providing you with the metadata value of an item, such as wool with its various colours.
 
 **Ore Dictionary Entries** is one of the more complex tooltips spanning across multiple lines. It lists all of the current item stacks ore dictionary entries if it should have any. e.g. Iron Ingot will display ingotIron`.
 
