@@ -27,9 +27,12 @@ package com.snowshock35.jeiintegration;
 import com.snowshock35.jeiintegration.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import org.lwjgl.input.Keyboard;
@@ -43,11 +46,14 @@ public class TooltipEventHandler {
 
     private Config config = JEIIntegration.config;
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onItemTooltip(ItemTooltipEvent e) {
 
-        int burnTime = TileEntityFurnace.getItemBurnTime(e.getItemStack());
-        if (burnTime > 0) {
+        ItemStack itemStack = e.getItemStack();
+        Item item = itemStack.getItem();
+
+        int burnTime = TileEntityFurnace.getItemBurnTime(itemStack);
+        if (burnTime > 0 && !isEmptyItemStack(e)) {
             if (Objects.equals(config.getBurnTimeTooltipMode(), "enabled")) {
                 e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.burnTime") + " " + burnTime + " " + I18n.format("tooltip.jeiintegration.burnTime.suffix"));
             } else if (Objects.equals(config.getBurnTimeTooltipMode(), "onShift") && isShiftKeyDown()) {
@@ -59,27 +65,59 @@ public class TooltipEventHandler {
             }
         }
 
-        if (Objects.equals(config.getInternalNameTooltipMode(), "enabled")) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.internalName") + " " + e.getItemStack().getItem().getRegistryName());
-        } else if (Objects.equals(config.getInternalNameTooltipMode(), "onShift") && isShiftKeyDown()) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.internalName") + " " + e.getItemStack().getItem().getRegistryName());
-        } else if (Objects.equals(config.getInternalNameTooltipMode(), "onDebug") && isDebugMode()) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.internalName") + " " + e.getItemStack().getItem().getRegistryName());
-        } else if (Objects.equals(config.getInternalNameTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.internalName") + " " + e.getItemStack().getItem().getRegistryName());
+        int maxDamage = itemStack.getMaxDamage();
+        int currentDamage = maxDamage - itemStack.getItemDamage();
+        if (maxDamage > 0 && !isEmptyItemStack(e)) {
+            if (Objects.equals(config.getDurabilityTooltipMode(), "enabled")) {
+                e.getToolTip().add(1, TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.durability") + " " + currentDamage + "/" + maxDamage);
+            } else if (Objects.equals(config.getDurabilityTooltipMode(), "onShift") && isShiftKeyDown()) {
+                e.getToolTip().add(1, TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.durability") + " " + currentDamage + "/" + maxDamage);
+            } else if (Objects.equals(config.getDurabilityTooltipMode(), "onDebug") && isDebugMode()) {
+                e.getToolTip().add(1, TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.durability") + " " + currentDamage + "/" + maxDamage);
+            } else if (Objects.equals(config.getDurabilityTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
+                e.getToolTip().add(1, TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.durability") + " " + currentDamage + "/" + maxDamage);
+            }
         }
 
-        if (Objects.equals(config.getMaxStackSizeTooltipMode(), "enabled")) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.maxStackSize") + " " + e.getItemStack().getMaxStackSize());
-        } else if (Objects.equals(config.getMaxStackSizeTooltipMode(), "onShift") && isShiftKeyDown()) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.maxStackSize") + " " + e.getItemStack().getMaxStackSize());
-        } else if (Objects.equals(config.getMaxStackSizeTooltipMode(), "onDebug") && isDebugMode()) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.maxStackSize") + " " + e.getItemStack().getMaxStackSize());
-        } else if (Objects.equals(config.getMaxStackSizeTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.maxStackSize") + " " + e.getItemStack().getMaxStackSize());
+        int metadata = itemStack.getMetadata();
+        if (!isEmptyItemStack(e)) {
+            if (Objects.equals(config.getMetadataTooltipMode(), "enabled")) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.metadata") + " " + metadata);
+            } else if (Objects.equals(config.getMetadataTooltipMode(), "onShift") && isShiftKeyDown()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.metadata") + " " + metadata);
+            } else if (Objects.equals(config.getMetadataTooltipMode(), "onDebug") && isDebugMode()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.metadata") + " " + metadata);
+            } else if (Objects.equals(config.getMetadataTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.metadata") + " " + metadata);
+            }
         }
 
-        if (!e.getItemStack().isEmpty()) {
+        if (!isEmptyItemStack(e)) {
+            if (Objects.equals(config.getRegistryNameTooltipMode(), "enabled")) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.registryName") + " " + item.getRegistryName());
+            } else if (Objects.equals(config.getRegistryNameTooltipMode(), "onShift") && isShiftKeyDown()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.registryName") + " " + item.getRegistryName());
+            } else if (Objects.equals(config.getRegistryNameTooltipMode(), "onDebug") && isDebugMode()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.registryName") + " " + item.getRegistryName());
+            } else if (Objects.equals(config.getRegistryNameTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.registryName") + " " + item.getRegistryName());
+            }
+        }
+
+        int stackSize = e.getItemStack().getMaxStackSize();
+        if (stackSize > 0 && !isEmptyItemStack(e)) {
+            if (Objects.equals(config.getMaxStackSizeTooltipMode(), "enabled")) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.maxStackSize") + " " + itemStack.getMaxStackSize());
+            } else if (Objects.equals(config.getMaxStackSizeTooltipMode(), "onShift") && isShiftKeyDown()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.maxStackSize") + " " + itemStack.getMaxStackSize());
+            } else if (Objects.equals(config.getMaxStackSizeTooltipMode(), "onDebug") && isDebugMode()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.maxStackSize") + " " + itemStack.getMaxStackSize());
+            } else if (Objects.equals(config.getMaxStackSizeTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.maxStackSize") + " " + itemStack.getMaxStackSize());
+            }
+        }
+
+        if (!isEmptyItemStack(e)) {
             if (Objects.equals(config.getOreDictEntriesTooltipMode(), "enabled")) {
                 genOreDictTooltip(e);
             } else if (Objects.equals(config.getOreDictEntriesTooltipMode(), "onShift") && isShiftKeyDown()) {
@@ -91,15 +129,21 @@ public class TooltipEventHandler {
             }
         }
 
-        if (Objects.equals(config.getUnlocalizedNameTooltipMode(), "enabled")) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.unlocalizedName") + " " + e.getItemStack().getUnlocalizedName());
-        } else if (Objects.equals(config.getUnlocalizedNameTooltipMode(), "onShift") && isShiftKeyDown()) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.unlocalizedName") + " " + e.getItemStack().getUnlocalizedName());
-        } else if (Objects.equals(config.getUnlocalizedNameTooltipMode(), "onDebug") && isDebugMode()) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.unlocalizedName") + " " + e.getItemStack().getUnlocalizedName());
-        } else if (Objects.equals(config.getUnlocalizedNameTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
-            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.unlocalizedName") + " " + e.getItemStack().getUnlocalizedName());
+        if (!isEmptyItemStack(e)) {
+            if (Objects.equals(config.getUnlocalizedNameTooltipMode(), "enabled")) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.unlocalizedName") + " " + itemStack.getUnlocalizedName());
+            } else if (Objects.equals(config.getUnlocalizedNameTooltipMode(), "onShift") && isShiftKeyDown()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.unlocalizedName") + " " + itemStack.getUnlocalizedName());
+            } else if (Objects.equals(config.getUnlocalizedNameTooltipMode(), "onDebug") && isDebugMode()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.unlocalizedName") + " " + itemStack.getUnlocalizedName());
+            } else if (Objects.equals(config.getUnlocalizedNameTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
+                e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.unlocalizedName") + " " + itemStack.getUnlocalizedName());
+            }
         }
+    }
+
+    private static boolean isEmptyItemStack(ItemTooltipEvent e) {
+        return e.getItemStack().isEmpty();
     }
 
     private static boolean isShiftKeyDown() {
@@ -127,22 +171,24 @@ public class TooltipEventHandler {
         }
     }
 
-    //TODO: Fix the fluid registry tooltips
-
+//    TODO: Fix the fluid registry tooltips
+//
 //    private static void genFluidRegTooltip(ItemTooltipEvent e) {
+//
 //        List<String> names = new ArrayList<String>();
-//        if (FluidRegistry..isEmptyContainer(evt.itemStack)) {
-//            names.add("  " + Utils.translate("tooltip.fluidreg.empty"));
+//        if (FluidRegistry.isEmptyContainer(e.getItemStack())) {
+//            names.add("  " + I18n.format("tooltip.fluidreg.empty"));
 //        } else {
-//            FluidStack fluid = Utils.getFluidStack(evt.itemStack);
+//            FluidStack fluid = Utils.getFluidStack(e.getItemStack());
 //            if (fluid != null) {
 //                names.add("  " + fluid.getLocalizedName());
 //                names.add("  " + fluid.amount + " mB");
 //            }
 //        }
 //        if (!names.isEmpty()) {
-//            evt.toolTip.add(Utils.translate("tooltip.fluidreg"));
-//            evt.toolTip.addAll(names);
+//            e.getToolTip().add(I18n.format("tooltip.fluidreg"));
+//            e.getToolTip().addAll(names);
 //        }
 //    }
 }
+

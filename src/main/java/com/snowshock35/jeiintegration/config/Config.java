@@ -39,17 +39,21 @@ public class Config {
     static final String CATEGORY_MISCELLANEOUS = "Miscellaneous Settings";
 
     private static final String defaultBurnTimeTooltipMode = "disabled";
+    private static final String defaultDurabilityTooltipMode = "disabled";
     private static final String defaultFluidRegInfoTooltipMode = "disabled";
-    private static final String defaultInternalNameTooltipMode = "disabled";
+    private static final String defaultRegistryNameTooltipMode = "disabled";
     private static final String defaultMaxStackSizeTooltipMode = "disabled";
+    private static final String defaultMetadataTooltipMode = "disabled";
     private static final String defaultOreDictEntriesTooltipMode = "disabled";
-    private static final String defaultunlocalizedNameTooltipMode = "disabled";
+    private static final String defaultUnlocalizedNameTooltipMode = "disabled";
 
     private final Configuration config;
     private String burnTimeTooltipMode = "";
+    private String durabilityTooltipMode = "";
     private String fluidRegInfoTooltipMode = "";
-    private String internalNameTooltipMode = "";
+    private String registryNameTooltipMode = "";
     private String maxStackSizeTooltipMode = "";
+    private String metadataToolTipMode = "";
     private String oreDictEntriesTooltipMode = "";
     private String unlocalizedNameTooltipMode = "";
 
@@ -69,11 +73,13 @@ public class Config {
         config.addCustomCategoryComment(CATEGORY_MISCELLANEOUS, I18n.format("config.jeiintegration.miscellaneous.comment"));
 
         burnTimeTooltipMode = config.getString("burnTimeTooltipMode", CATEGORY_TOOLTIPS, defaultBurnTimeTooltipMode, I18n.format("config.jeiintegration.tooltips.burnTimeTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.burnTimeTooltipMode");
+        durabilityTooltipMode = config.getString("durabilityTooltipMode", CATEGORY_TOOLTIPS, defaultDurabilityTooltipMode, I18n.format("config.jeiintegration.tooltips.durabilityTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.durabilityTooltipMode");
         fluidRegInfoTooltipMode = config.getString("fluidRegInfoTooltipMode", CATEGORY_TOOLTIPS, defaultFluidRegInfoTooltipMode, I18n.format("config.jeiintegration.tooltips.fluidRegInfoTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.fluidRegInfoTooltipMode");
-        internalNameTooltipMode = config.getString("internalNameTooltipMode", CATEGORY_TOOLTIPS, defaultInternalNameTooltipMode, I18n.format("config.jeiintegration.tooltips.internalNameTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.internalNameTooltipMode");
+        registryNameTooltipMode = config.getString("registryNameTooltipMode", CATEGORY_TOOLTIPS, defaultRegistryNameTooltipMode, I18n.format("config.jeiintegration.tooltips.registryNameTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.registryNameTooltipMode");
         maxStackSizeTooltipMode = config.getString("maxStackSizeTooltipMode", CATEGORY_TOOLTIPS, defaultMaxStackSizeTooltipMode, I18n.format("config.jeiintegration.tooltips.maxStackSizeTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.maxStackSizeTooltipMode");
+        metadataToolTipMode = config.getString("metadataTooltipMode", CATEGORY_TOOLTIPS, defaultMetadataTooltipMode, I18n.format("config.jeiintegration.tooltips.metadataTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.metadataTooltipMode");
         oreDictEntriesTooltipMode = config.getString("oreDictEntriesTooltipMode", CATEGORY_TOOLTIPS, defaultOreDictEntriesTooltipMode, I18n.format("config.jeiintegration.tooltips.oreDictEntriesTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.oreDictEntriesTooltipMode");
-        unlocalizedNameTooltipMode = config.getString("unlocalizedNameTooltipMode", CATEGORY_TOOLTIPS, defaultunlocalizedNameTooltipMode, I18n.format("config.jeiintegration.tooltips.unlocalizedNameTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.unlocalizedNameTooltipMode");
+        unlocalizedNameTooltipMode = config.getString("unlocalizedNameTooltipMode", CATEGORY_TOOLTIPS, defaultUnlocalizedNameTooltipMode, I18n.format("config.jeiintegration.tooltips.unlocalizedNameTooltipMode.comment"), new String[] {"disabled", "enabled", "onShift", "onDebug", "onShiftAndDebug"}, "config.jeiintegration.tooltips.unlocalizedNameTooltipMode");
 
         if (config.hasChanged()) {
             config.save();
@@ -88,16 +94,24 @@ public class Config {
         return burnTimeTooltipMode;
     }
 
+    public String getDurabilityTooltipMode() {
+        return durabilityTooltipMode;
+    }
+
     public String getFluidRegInfoTooltipMode() {
         return fluidRegInfoTooltipMode;
     }
 
-    public String getInternalNameTooltipMode() {
-        return internalNameTooltipMode;
+    public String getRegistryNameTooltipMode() {
+        return registryNameTooltipMode;
     }
 
     public String getMaxStackSizeTooltipMode() {
         return maxStackSizeTooltipMode;
+    }
+
+    public String getMetadataTooltipMode() {
+        return metadataToolTipMode;
     }
 
     public String getOreDictEntriesTooltipMode() {
