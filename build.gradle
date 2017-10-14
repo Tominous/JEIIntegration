@@ -17,9 +17,9 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = version_major + "." + version_minor + "." + version_patch
+version = "${version_major}.${version_minor}.${version_patch}"
 group = "com.snowshock35.jeiintegration" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "jeiintegration_" + mc_version
+archivesBaseName = "jeiintegration_${mc_version}"
 
 //adds the build number to the end of the version string if on a build server
 if (System.getenv('TRAVIS_BUILD_NUMBER') != null) {
@@ -32,10 +32,10 @@ compileJava {
 }
 
 minecraft {
-    version = mc_version + "-" + forge_version
+    version = "${mc_version}-${forge_version}"
     runDir = "run"
-    replace '@VERSION@', project.version
-    mappings = mcp_mappings
+    replace "@VERSION@", project.version
+    mappings = "${mcp_mappings}"
     useDepAts = true
 }
 

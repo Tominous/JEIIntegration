@@ -29,6 +29,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -89,6 +90,19 @@ public class TooltipEventHandler {
             } else if (Objects.equals(config.getMetadataTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
                 e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.metadata") + " " + metadata);
             }
+        }
+
+        NBTTagCompound nbtData = item.getNBTShareTag(itemStack);
+        if (item.getNBTShareTag(itemStack) != null && !isEmptyItemStack(e)) {
+          if (Objects.equals(config.getNbtTooltipMode(), "enabled")) {
+            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.nbtTagData") + " " + nbtData);
+          } else if (Objects.equals(config.getNbtTooltipMode(), "onShift") && isShiftKeyDown()) {
+            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.nbtTagData") + " " + nbtData);
+          } else if (Objects.equals(config.getNbtTooltipMode(), "onDebug") && isDebugMode()) {
+            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.nbtTagData") + " " + nbtData);
+          } else if (Objects.equals(config.getNbtTooltipMode(), "onShiftAndDebug") && isShiftKeyDown() && isDebugMode()) {
+            e.getToolTip().add(TextFormatting.DARK_GRAY + I18n.format("tooltip.jeiintegration.nbtTagData") + " " + nbtData);
+          }
         }
 
         if (!isEmptyItemStack(e)) {
@@ -169,7 +183,9 @@ public class TooltipEventHandler {
             e.getToolTip().addAll(names);
         }
     }
+}
 
+//
 //    TODO: Fix the fluid registry tooltips
 //
 //    private static void genFluidRegTooltip(ItemTooltipEvent e) {
@@ -189,5 +205,4 @@ public class TooltipEventHandler {
 //            e.getToolTip().addAll(names);
 //        }
 //    }
-}
-
+//

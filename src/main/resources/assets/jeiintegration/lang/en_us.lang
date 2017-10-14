@@ -35,6 +35,7 @@ config.jeiintegration.tooltips.unlocalizedNameTooltipMode.comment=Configure the 
 
 # Tooltips
 tooltip.jeiintegration.metadata=Metadata:
+tooltip.jeiintegration.nbtTagData=NBT:
 tooltip.jeiintegration.durability=Durability:
 tooltip.jeiintegration.burnTime=Burn Time:
 tooltip.jeiintegration.burnTime.suffix=ticks
