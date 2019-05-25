@@ -185,24 +185,24 @@ public class TooltipEventHandler {
     }
 }
 
-//
+
 //    TODO: Fix the fluid registry tooltips
-//
-//    private static void genFluidRegTooltip(ItemTooltipEvent e) {
-//
-//        List<String> names = new ArrayList<String>();
-//        if (FluidRegistry.isEmptyContainer(e.getItemStack())) {
-//            names.add("  " + I18n.format("tooltip.fluidreg.empty"));
-//        } else {
-//            FluidStack fluid = Utils.getFluidStack(e.getItemStack());
-//            if (fluid != null) {
-//                names.add("  " + fluid.getLocalizedName());
-//                names.add("  " + fluid.amount + " mB");
-//            }
-//        }
-//        if (!names.isEmpty()) {
-//            e.getToolTip().add(I18n.format("tooltip.fluidreg"));
-//            e.getToolTip().addAll(names);
-//        }
-//    }
-//
+
+    private static void genFluidRegTooltip(ItemTooltipEvent e) {
+
+        List<String> names = new ArrayList<String>();
+        if (FluidRegistry.isEmptyContainer(e.getItemStack())) {
+            names.add("  " + I18n.format("tooltip.fluidreg.empty"));
+        } else {
+            FluidStack fluid = Utils.getFluidStack(e.getItemStack());
+            if (fluid != null) {
+                names.add("  " + fluid.getLocalizedName());
+                names.add("  " + fluid.amount + " mB");
+            }
+        }
+        if (!names.isEmpty()) {
+            e.getToolTip().add(I18n.format("tooltip.fluidreg"));
+            e.getToolTip().addAll(names);
+        }
+    }
+
